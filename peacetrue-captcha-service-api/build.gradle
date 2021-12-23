@@ -1,0 +1,5 @@
+dependencies {
+    api "org.slf4j:slf4j-api"
+    testImplementation "com.github.peacetrue:peacetrue-core"
+    testImplementation "org.apache.commons:commons-lang3"
+}

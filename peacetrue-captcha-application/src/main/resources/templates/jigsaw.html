@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拼图验证码</title>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
+    <style>
+        div {
+            width: 400px;
+            margin: 100px auto
+        }
+
+        image, img {
+            width: 200px;
+            height: 100px;
+            text-align: center
+        }
+
+        #background {
+            width: 311px;
+            height: 155px;
+            text-align: center
+        }
+
+        #slidingBlock {
+            width: 47px;
+            height: 155px;
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+<div id="captcha">
+    <img style="display: none" id="slidingBlock"/>
+    <img style="display: none" id="background"/>
+    <button onclick="getQuestion()">看不清楚，换一张</button>
+</div>
+<div>
+    <input type="text" id="x"/>
+    <input type="text" id="y"/>
+    <button onclick="checkAnswer()">确定</button>
+    <span id="answer-result" style="display: inline-block"></span>
+</div>
+<script>
+
+    function getQuestion() {
+        $.getJSON("/captcha?type=BLOCK_PUZZLE", null, function (result) {
+            $("#background").show().attr("src", `data:image/png;base64,${result.question.background}`)
+            $("#slidingBlock").show().attr("src", `data:image/png;base64,${result.question.slidingBlock}`)
+            window.data = result;
+        })
+    }
+
+    function checkAnswer() {
+        let params = {id: window.data.id, "answer.x": $("#x").val(), "answer.y": $("#y").val()};
+        $.post("/captcha?type=BLOCK_PUZZLE", params, function (result) {
+            $("#answer-result").text(`验证成功：${result}`);
+            !result && getQuestion();
+        })
+    }
+
+    $(function () {
+        getQuestion();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  thymeleaf:
+    cache: false
+
+logging:
+  level:
+    root: info
+    org.springframework: info
+    com.github.peacetrue: trace

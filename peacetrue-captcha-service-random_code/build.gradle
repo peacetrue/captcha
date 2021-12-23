@@ -1,0 +1,9 @@
+description "随机码图形验证码"
+
+dependencies {
+    api project(":peacetrue-captcha-service-api")
+    implementation "ch.qos.logback:logback-classic"
+    implementation "org.apache.commons:commons-lang3"
+    implementation "org.springframework.boot:spring-boot-autoconfigure"
+    testImplementation "com.github.peacetrue:peacetrue-core"
+}

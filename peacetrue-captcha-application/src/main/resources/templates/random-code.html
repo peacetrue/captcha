@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机码验证码</title>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
+    <style>
+        div {
+            width: 400px;
+            margin: 100px auto
+        }
+
+        image, img {
+            width: 200px;
+            height: 100px;
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+<div id="captcha">
+    <img style="display: none"/>
+    <button onclick="getQuestion()">看不清楚，换一张</button>
+</div>
+<div>
+    <input type="text" name="answer"/>
+    <button onclick="checkAnswer()">确定</button>
+    <span id="answer-result"></span>
+</div>
+<script>
+
+    function getQuestion() {
+        $.getJSON("/captcha?type=RANDOM_CODE", null, function (result) {
+            $("#captcha>img").show().attr("src", `data:image/png;base64,${result.question}`)
+            window.data = result;
+        })
+    }
+
+    function checkAnswer() {
+        let params = {id: window.data.id, answer: $("[name='answer']").val()};
+        $.post("/captcha?type=RANDOM_CODE", params, function (result) {
+            $("#answer-result").text(`验证成功：${result}`);
+            !result && getQuestion();
+        })
+    }
+
+    $(function () {
+        getQuestion();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+description "图形验证码应用"
+
+dependencies {
+    implementation project(":peacetrue-captcha-controller")
+    implementation project(":peacetrue-captcha-service-random_code")
+    implementation project(":peacetrue-captcha-service-jigsaw")
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-logging"
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.webjars:webjars-locator:0.30"
+    implementation "org.webjars:bootstrap:3.3.7-1"
+    implementation "org.webjars:jquery:3.1.1"
+}

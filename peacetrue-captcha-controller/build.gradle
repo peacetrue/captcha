@@ -1,0 +1,10 @@
+description "图形验证码控制器"
+
+dependencies {
+    implementation project(":peacetrue-captcha-service-api")
+    implementation project(":peacetrue-captcha-service-random_code")
+    implementation project(":peacetrue-captcha-service-jigsaw")
+    implementation "ch.qos.logback:logback-classic"
+    implementation "org.springframework:spring-webmvc"
+    implementation "org.springframework.boot:spring-boot-autoconfigure"
+}

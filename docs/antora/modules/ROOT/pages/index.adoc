@@ -1,17 +1,14 @@
 = 简介
 
-peacetrue-template-gradle 是一个基于 gradle 的 xref:github-template.adoc[github 模板项目]。
+全自动区分计算机和人类的公开图灵测试（英语：Completely Automated Public Turing test to tell Computers and Humans Apart，简称CAPTCHA）， +
+俗称验证码，是一种区分用户是计算机或人的公共全自动进程。 +
+在CAPTCHA测试中，作为服务器的计算机会自动生成一个问题由用户来解答。 +
+这个问题可以由计算机生成并评判，但是必须只有人类才能解答。 +
+由于计算机无法解答CAPTCHA的问题，所以回答出问题的用户就可以被认为是人类。
 
-包含以下内容：
+== 参考资料
 
-* 基于 jdk8+
-* 使用 gradle-5.6.2
-* build.gradle中包含以下内容：
-** idea 插件，支持在 Intellij IDEA 中开发
-** maven-publish 插件，发布类库到 maven 中央仓库
-** 依赖版本管理
-*** spring-boot-dependencies:1.5.20.RELEASE
-*** peacetrue-dependencies:1.0.4-SNAPSHOT
-* 文档目录 /docs 包含以下内容：
-** ``README.graffle``设计图表
-** 一个符合 https://antora.org[antora^] 要求的文档结构
+* https://zhuanlan.zhihu.com/p/27524606[图形验证码在携程的实践之路^]
+* https://github.com/search?l=Java&q=CAPTCHA&type=Repositories[Github Search CAPTCHA^]
+* https://github.com/whvcse/EasyCaptcha[java类较好的开源实现^]
+* https://www.aqniu.com/tools-tech/29545.html[收费服务类^]
